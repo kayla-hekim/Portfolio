@@ -15,7 +15,7 @@ export default function Mobile() {
         <Navbar />
 
         <div style={{paddingTop: "100px"}}>
-            <h2 style={{paddingBottom: "15px", margin: 0, fontSize: "20px", fontWeight: "bold", color: "#01B2AB"}}>Hi There! I'm</h2>
+            <h2 style={{paddingBottom: "15px", margin: 0, fontSize: "20px", fontWeight: "bold", color: "#01B2AB"}}>Hi there! I'm</h2>
             <h1 style={{paddingBottom: "15px", margin: 0, fontSize: "60px", fontWeight: "600", color: "#FFFFFF"}}>Kayla Kim</h1>
             
             <p 
@@ -101,8 +101,9 @@ export default function Mobile() {
                         '& .MuiOutlinedInput-input': {
                         padding: '3px 14px',
                         height: '1.2em',
+                        color: '#FFFFFF',
                         '&::placeholder': {
-                            color: '#FFFFFF',
+                            color: '#CCCCCC',
                             opacity: 1,
                             fontFamily: "'DM Sans', sans-serif !important",
                         },
@@ -132,13 +133,14 @@ export default function Mobile() {
                         },
                         },
                         '& .MuiOutlinedInput-input': {
-                        padding: '3px 14px',
-                        height: '1.2em',
-                        '&::placeholder': {
+                            padding: '3px 14px',
+                            height: '1.2em',
                             color: '#FFFFFF',
-                            opacity: 1,
-                            fontFamily: "'DM Sans', sans-serif !important",
-                        },
+                            '&::placeholder': {
+                                color: '#CCCCCC',
+                                opacity: 1,
+                                fontFamily: "'DM Sans', sans-serif !important",
+                            },
                         },
                     }}
                 />
@@ -168,8 +170,9 @@ export default function Mobile() {
                         '& .MuiOutlinedInput-input': {
                         padding: '3px 14px',
                         height: '1.2em',
+                        color: '#FFFFFF',
                         '&::placeholder': {
-                            color: '#FFFFFF',
+                            color: '#CCCCCC',
                             opacity: 1,
                             fontFamily: "'DM Sans', sans-serif !important",
                         },
@@ -181,7 +184,7 @@ export default function Mobile() {
       variant="contained"
       disableRipple
       sx={{
-        boxShadow: "0px 4px 20px 0px #000000",
+        boxShadow: "0px 4px 20px 0px #242424",
         backgroundColor: '#01B2AB',
         color: '#242424',
         borderRadius: '38px',
