@@ -1,16 +1,24 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TextField from '@mui/material/TextField';
+import { useForm } from '@formspree/react';
 
 import Navbar from "./components/Navbar";
 
 
 
 export default function Mobile() {
+    const navigate = useNavigate();
 
-  return (
+    const [state, handleSubmit] = useForm(import.meta.env.VITE_FORMSPREE_ID);
+    if (state.succeeded) {
+        return <p>Thanks for your message! I'll be in touch soon.</p>;
+    }
+
+    return (
     <React.Fragment>
         <Navbar />
 
@@ -47,8 +55,11 @@ export default function Mobile() {
                             backgroundColor: 'transparent',
                         },
                     }}
+                    // onClick={() => navigate("https://github.com/kayla-hekim")}
                 >
-                    <GitHubIcon sx={{color: "#01B2AB", width: "50px", height: "auto"}}/>
+                    <a href="https://github.com/kayla-hekim" target="_blank" rel="noopener noreferrer">
+                        <GitHubIcon sx={{color: "#01B2AB", width: "50px", height: "auto"}}/>
+                    </a>
                 </Button>
                 <Button
                     variant="text"
@@ -66,7 +77,9 @@ export default function Mobile() {
                         },
                     }}
                 >
-                    <LinkedInIcon sx={{color: "#01B2AB",  width: "50px", height: "50px"}}/>
+                    <a href="https://linkedin.com/in/kayla-h-kim" target="_blank" rel="noopener noreferrer">
+                        <LinkedInIcon sx={{color: "#01B2AB",  width: "50px", height: "auto"}}/>
+                    </a>
                 </Button>
             </div>
         </div>
@@ -75,64 +88,33 @@ export default function Mobile() {
         <div>
             <h2 style={{textAlign: "left", marginRight: "20px", marginLeft: "20px"}}>Contact Me:</h2>
 
-            <div style={{margin: '20px', display: "flex", flexDirection: "column", gap: "20px"}}>
-                <TextField
-                    variant="outlined"
-                    placeholder="Name"
-                    sx={{
-                        width: "100%",
-                        minHeight: "30px",
-                        height: "100%",
-                        borderRadius: "30px",
-                        '& .MuiOutlinedInput-root': {
-                            padding: '5px',
-                            borderRadius: "10px",
-                            fontFamily: "'DM Sans', sans-serif !important",
-                        '& fieldset': {
-                            borderColor: '#FFFFFF',
-                        },
-                        '&:hover fieldset': {
-                            borderColor: '#FFFFFF',
-                        },
-                        '&.Mui-focused fieldset': {
-                            borderColor: '#FFFFFF',
-                        },
-                        },
-                        '& .MuiOutlinedInput-input': {
-                        padding: '3px 14px',
-                        height: '1.2em',
-                        color: '#FFFFFF',
-                        '&::placeholder': {
-                            color: '#CCCCCC',
-                            opacity: 1,
-                            fontFamily: "'DM Sans', sans-serif !important",
-                        },
-                        },
-                    }}
-                />
-
-                <TextField
-                    variant="outlined"
-                    placeholder="Email"
-                    sx={{
-                        width: "100%",
-                        height: "100%",
-                        borderRadius: "30px",
-                        '& .MuiOutlinedInput-root': {
-                            padding: '5px',
-                            borderRadius: "10px",
-                            fontFamily: "'DM Sans', sans-serif !important",
-                        '& fieldset': {
-                            borderColor: '#FFFFFF',
-                        },
-                        '&:hover fieldset': {
-                            borderColor: '#FFFFFF',
-                        },
-                        '&.Mui-focused fieldset': {
-                            borderColor: '#FFFFFF',
-                        },
-                        },
-                        '& .MuiOutlinedInput-input': {
+            <form onSubmit={handleSubmit}>
+                <div style={{margin: '20px', display: "flex", flexDirection: "column", gap: "20px"}}>
+                
+                    <TextField
+                        variant="outlined"
+                        placeholder="Name"
+                        name="name"
+                        sx={{
+                            width: "100%",
+                            minHeight: "30px",
+                            height: "100%",
+                            borderRadius: "30px",
+                            '& .MuiOutlinedInput-root': {
+                                padding: '5px',
+                                borderRadius: "10px",
+                                fontFamily: "'DM Sans', sans-serif !important",
+                            '& fieldset': {
+                                borderColor: '#FFFFFF',
+                            },
+                            '&:hover fieldset': {
+                                borderColor: '#FFFFFF',
+                            },
+                            '&.Mui-focused fieldset': {
+                                borderColor: '#FFFFFF',
+                            },
+                            },
+                            '& .MuiOutlinedInput-input': {
                             padding: '3px 14px',
                             height: '1.2em',
                             color: '#FFFFFF',
@@ -141,80 +123,119 @@ export default function Mobile() {
                                 opacity: 1,
                                 fontFamily: "'DM Sans', sans-serif !important",
                             },
-                        },
-                    }}
-                />
+                            },
+                        }}
+                    />
 
-                <TextField
-                    variant="outlined"
-                    placeholder="Your Message"
-                    multiline
-                    rows={5}
+                    <TextField
+                        variant="outlined"
+                        placeholder="Email"
+                        name="email"
+                        sx={{
+                            width: "100%",
+                            height: "100%",
+                            borderRadius: "30px",
+                            '& .MuiOutlinedInput-root': {
+                                padding: '5px',
+                                borderRadius: "10px",
+                                fontFamily: "'DM Sans', sans-serif !important",
+                            '& fieldset': {
+                                borderColor: '#FFFFFF',
+                            },
+                            '&:hover fieldset': {
+                                borderColor: '#FFFFFF',
+                            },
+                            '&.Mui-focused fieldset': {
+                                borderColor: '#FFFFFF',
+                            },
+                            },
+                            '& .MuiOutlinedInput-input': {
+                                padding: '3px 14px',
+                                height: '1.2em',
+                                color: '#FFFFFF',
+                                '&::placeholder': {
+                                    color: '#CCCCCC',
+                                    opacity: 1,
+                                    fontFamily: "'DM Sans', sans-serif !important",
+                                },
+                            },
+                        }}
+                    />
+
+                    <TextField
+                        variant="outlined"
+                        placeholder="Your Message"
+                        name="Your Message"
+                        multiline
+                        rows={5}
+                        sx={{
+                            width: "100%",
+                            borderRadius: "30px",
+                            '& .MuiOutlinedInput-root': {
+                                padding: '5px',
+                                borderRadius: "10px",
+                                fontFamily: "'DM Sans', sans-serif !important",
+                            '& fieldset': {
+                                borderColor: '#FFFFFF',
+                            },
+                            '&:hover fieldset': {
+                                borderColor: '#FFFFFF',
+                            },
+                            '&.Mui-focused fieldset': {
+                                borderColor: '#FFFFFF',
+                            },
+                            },
+                            '& .MuiOutlinedInput-input': {
+                            padding: '3px 14px',
+                            height: '1.2em',
+                            color: '#FFFFFF',
+                            '&::placeholder': {
+                                color: '#CCCCCC',
+                                opacity: 1,
+                                fontFamily: "'DM Sans', sans-serif !important",
+                            },
+                            },
+                        }}
+                    />
+
+                    <Button
+                    variant="contained"
+                    disableRipple
+                    type="submit" 
+                    disabled={state.submitting}
                     sx={{
-                        width: "100%",
-                        borderRadius: "30px",
-                        '& .MuiOutlinedInput-root': {
-                            padding: '5px',
-                            borderRadius: "10px",
-                            fontFamily: "'DM Sans', sans-serif !important",
-                        '& fieldset': {
-                            borderColor: '#FFFFFF',
+                        boxShadow: "0px 4px 20px 0px #242424",
+                        backgroundColor: '#01B2AB',
+                        color: '#242424',
+                        borderRadius: '38px',
+                        padding: '10px 30px',
+                        fontSize: '16px',
+                        fontWeight: 'normal',
+                        fontFamily: "'DM Sans', sans-serif",
+                        textTransform: 'none',
+                        '&:hover': {
+                        backgroundColor: '#01B2AB',
+                        boxShadow: 'none',
                         },
-                        '&:hover fieldset': {
-                            borderColor: '#FFFFFF',
+                        '&:focus': {
+                        outline: 'none',
+                        boxShadow: 'none',
                         },
-                        '&.Mui-focused fieldset': {
-                            borderColor: '#FFFFFF',
+                        '&:active': {
+                        backgroundColor: '#01B2AB',
+                        boxShadow: 'none',
                         },
-                        },
-                        '& .MuiOutlinedInput-input': {
-                        padding: '3px 14px',
-                        height: '1.2em',
-                        color: '#FFFFFF',
-                        '&::placeholder': {
-                            color: '#CCCCCC',
-                            opacity: 1,
-                            fontFamily: "'DM Sans', sans-serif !important",
-                        },
-                        },
+                        '&.Mui-disabled': {
+                        backgroundColor: '#01B2AB',
+                        color: '#242424',
+                        opacity: 0.7,
+                        }
                     }}
-                />
-
-                <Button
-      variant="contained"
-      disableRipple
-      sx={{
-        boxShadow: "0px 4px 20px 0px #242424",
-        backgroundColor: '#01B2AB',
-        color: '#242424',
-        borderRadius: '38px',
-        padding: '10px 30px',
-        fontSize: '16px',
-        fontWeight: 'normal',
-        fontFamily: "'DM Sans', sans-serif",
-        textTransform: 'none',
-        '&:hover': {
-          backgroundColor: '#01B2AB',
-          boxShadow: 'none',
-        },
-        '&:focus': {
-          outline: 'none',
-          boxShadow: 'none',
-        },
-        '&:active': {
-          backgroundColor: '#01B2AB',
-          boxShadow: 'none',
-        },
-        '&.Mui-disabled': {
-          backgroundColor: '#01B2AB',
-          color: '#242424',
-          opacity: 0.7,
-        }
-      }}
-    >
-      Submit
-    </Button>
-            </div>
+                    >
+                        Submit
+                    </Button>
+                </div>
+            </form>
         </div>
     </React.Fragment>
   );
