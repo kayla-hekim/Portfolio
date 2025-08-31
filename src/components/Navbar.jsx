@@ -10,7 +10,7 @@ export default function Navbar() {
         boxShadow: "0px 4px 20px 0 #242424",
         display: 'flex', 
         justifyContent: 'space-between', 
-        maxWidth: "800px",
+        maxWidth: "755px",
         margin: '0 auto',
         paddingTop: '30px',
         width: '100%',

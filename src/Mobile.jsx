@@ -101,7 +101,7 @@ export default function Mobile() {
                 3rd year at the University of Virginia double majoring in data science and computer science, aspiring ML Engineer and Software Developer
             </p>
 
-            <div style={{display: "flex", justifyContent: "center", gap: "30px"}}>
+            <div style={{display: "flex", justifyContent: "center", gap: "30px", marginBottom: "30px"}}>
                 <Button
                     variant="text"
                     disableRipple
@@ -154,7 +154,7 @@ export default function Mobile() {
                 <div>
                     <h2 style={{color: "#242424", textAlign: "left", margin: 0, marginRight: "20px", marginLeft: "20px"}}>About</h2>
                     
-                    <p style={{color: "#242424", textAlign: "left" , marginRight: "20px", marginLeft: "20px"}}>
+                    <p style={{color: "#242424", textAlign: "left" , marginRight: "20px", marginLeft: "20px", fontSize: "20px", lineHeight: "25px"}}>
                         My passion for programming began in fifth grade when I attended a camp to code Minecraft mods. Since then, this passion has extended from sandbox video games to developing apps and building ML models with various languages, including Python, Java, JS and more.
                         <br /><br />I recommend checking out my <b>Projects</b> and <b>Experience</b> below!
                     </p>
