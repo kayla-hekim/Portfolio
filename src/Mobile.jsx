@@ -12,6 +12,8 @@ import gtg from "../public/get-to-gather.png";
 import diySpotify from "../public/diy-spotify.png";
 import courseReviewApp from "../public/course-review-app.png";
 
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3KEYS_PUBLIC_ACCESS_KEY;
+
 
 const fetchProjects = async () => {
     return [
@@ -58,11 +60,6 @@ const fetchProjects = async () => {
 export default function Mobile() {
     // const navigate = useNavigate();
 
-    const [state, handleSubmit] = useForm(import.meta.env.VITE_FORMSPREE_ID);
-    if (state.succeeded) {
-        return <p>Thanks for your message! I'll be in touch soon.</p>;
-    }
-
     const [projects, setProjects] = useState([]);
     useEffect(() => {
         const getProjects = async () => {
@@ -78,6 +75,48 @@ export default function Mobile() {
 
         getProjects();
     }, []);
+
+    const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [submitting, setSubmitting] = useState(false);
+  const [status, setStatus] = useState('');
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setStatus('');
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        })
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setStatus("Thanks for your message! I'll be in touch soon.");
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus("Oops! Something went wrong. Please try again later.");
+      }
+    } catch (error) {
+      setStatus("Oops! There was a network error. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
 
     return (
@@ -233,15 +272,19 @@ export default function Mobile() {
         </div>
 
         <div id="Contact">
-            <h2 style={{textAlign: "left", marginRight: "20px", marginLeft: "20px"}}>Contact Me</h2>
+            <h2 style={{textAlign: "left", marginRight: "20px", marginLeft: "20px", marginTop: "30px"}}>Contact Me</h2>
 
             <form onSubmit={handleSubmit}>
+            {/* <form action="https://api.web3forms.com/submit" method="POST"> */}
+                <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY}/>
+
                 <div style={{margin: '20px', display: "flex", flexDirection: "column", gap: "20px"}}>
-                
                     <TextField
                         variant="outlined"
                         placeholder="Name"
                         name="name"
+                        value={formData.name}
+                        onChange={handleChange}
                         sx={{
                             width: "100%",
                             minHeight: "30px",
@@ -278,6 +321,8 @@ export default function Mobile() {
                         variant="outlined"
                         placeholder="Email"
                         name="email"
+                        value={formData.email}
+                        onChange={handleChange}
                         sx={{
                             width: "100%",
                             height: "100%",
@@ -312,9 +357,11 @@ export default function Mobile() {
                     <TextField
                         variant="outlined"
                         placeholder="Your Message"
-                        name="Your Message"
+                        name="message"
                         multiline
                         rows={5}
+                        value={formData.message}
+                        onChange={handleChange}
                         sx={{
                             width: "100%",
                             borderRadius: "30px",
@@ -349,7 +396,7 @@ export default function Mobile() {
                     variant="contained"
                     disableRipple
                     type="submit" 
-                    disabled={state.submitting}
+                    disabled={submitting}
                     sx={{
                         boxShadow: "0px 4px 20px 0px #242424",
                         backgroundColor: '#01B2AB',
@@ -360,6 +407,7 @@ export default function Mobile() {
                         fontWeight: 'normal',
                         fontFamily: "'DM Sans', sans-serif",
                         textTransform: 'none',
+                        marginBottom: "30px",
                         '&:hover': {
                         backgroundColor: '#01B2AB',
                         boxShadow: 'none',
@@ -383,6 +431,7 @@ export default function Mobile() {
                     </Button>
                 </div>
             </form>
+            {status && <p style={{textAlign: "center", color: '#01B2AB', marginTop: '10px'}}>{status}</p>}
         </div>
     </React.Fragment>
   );
