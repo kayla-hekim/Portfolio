@@ -7,15 +7,18 @@ export default function Navbar() {
   return (
     <Box 
       sx={{ 
+        boxShadow: "0px 4px 20px 0 #242424",
         display: 'flex', 
-        justifyContent: 'center', 
-        gap: '5px', 
+        justifyContent: 'space-between', 
+        maxWidth: "800px",
+        margin: '0 auto',
         paddingTop: '30px',
         width: '100%',
         backgroundColor: "#242424",
         position: 'fixed',  
         top: 0, 
         left: 0,
+        right: 0,
         zIndex: 1000     
       }}
     >
@@ -25,7 +28,7 @@ export default function Navbar() {
           variant="text" 
           sx={{
             color: '#CCCCCC', 
-            fontSize: '12px', 
+            fontSize: '13px', 
             fontFamily: "'DM Sans', sans-serif",
             fontWeight: 'normal',
             '&:hover': {
@@ -39,7 +42,9 @@ export default function Navbar() {
             },
           }}
         >
-          {item}
+          <a href={`#${item}`} style={{color: "#CCCCCC"}}>
+            {item}
+          </a>
         </Button>
       ))}
     </Box>
