@@ -12,6 +12,8 @@ import pfp from "../public/pfp.png";
 import gtg from "../public/get-to-gather.png";
 import diySpotify from "../public/diy-spotify.png";
 import courseReviewApp from "../public/course-review-app.png";
+import tcf_sentiment_analyzer from "../public/TCF_sentiment_analyzer.png";
+
 
 const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3KEYS_PUBLIC_ACCESS_KEY;
 
@@ -20,6 +22,20 @@ const fetchProjects = async () => {
     return [
         {
             id: 1,
+            name: "The Course Forum Sentiment Analyzer",
+            tools: [
+                "Python",
+                "Transformer package",
+                "huggingface Roberta pretrained model",
+                "BeautifulSoup",
+                "Requests",
+                "softmax regression"
+            ],
+            description: "analyzes any The Course Forum (website) course page and provides a sentiment analysis based on reviews and ratings. Find more at the Github here: https://github.com/kayla-hekim/TCF-sentiment-analysis/tree/main",
+            image: tcf_sentiment_analyzer
+        },
+        {
+            id: 2,
             name: "DIY Spotify",
             tools: [
                 "Python", 
@@ -28,10 +44,10 @@ const fetchProjects = async () => {
                 "SQL"
             ],
             description: "allows users to upload, play, and view songs of their choice.",
-            image: diySpotify
+            image: gtg
         },
         {
-            id: 2,
+            id: 3,
             name: "Get-To-Gather",
             tools: [
                 "JavaScript xml",
@@ -40,10 +56,10 @@ const fetchProjects = async () => {
                 "SQLAlchemy"
             ],
             description: "presents easy scheduling as a form of social media, where users can friend other accounts, send personal calendars, and schedule group events.",
-            image: gtg
+            image: diySpotify
         },
         {
-            id: 3,
+            id: 4,
             name: "Course Review Site",
             tools: [
                 "Java",
